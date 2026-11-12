@@ -1,4 +1,6 @@
-const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS', 'TRACE']
+import type { Json, Me, Order, Product, User } from './types'
+
+const SAFE_METHODS =['GET', 'HEAD', 'OPTIONS', 'TRACE']
 
 export const getCookie = (name: string): string | undefined =>
   document.cookie
@@ -45,3 +47,31 @@ export const apiRequest = async <T>(
   }
   return (res.status === 204 ? undefined : await res.json()) as T
 }
+
+export const register = (email: string, password: string) =>
+  apiRequest<User>('register/', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+  })
+
+export const login = (email: string, password: string) =>
+  apiRequest<User>('login/', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+  })
+
+export const logout = () => apiRequest<void>('logout/', { method: 'POST' })
+
+// Rejects (403) when not logged in
+export const getMe = () => apiRequest<Me>('me/')
+
+export const getProducts = () => apiRequest<Product[]>('products/')
+
+export const cancelOrder = (orderId: string) =>
+  apiRequest<void>(`orders/${orderId}/`, { method: 'DELETE' })
+
+export const placeOrder =(contents: Json) =>
+  apiRequest<Order>('orders/', {
+    method: 'POST',
+    body: JSON.stringify({ contents }),
+  })

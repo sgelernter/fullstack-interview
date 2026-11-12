@@ -1,11 +1,14 @@
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 
 from . import views
 
-router = routers.DefaultRouter()
-
 urlpatterns = [
     path("csrf/", views.csrf),
-    path("", include(router.urls)),
+    path("register/", views.register),
+    path("login/", views.login),
+    path("logout/", views.logout),
+    path("me/", views.me),
+    path("products/", views.products),
+    path("orders/", views.place_order),
+    path("orders/<uuid:order_id>/", views.delete_order),
 ]
