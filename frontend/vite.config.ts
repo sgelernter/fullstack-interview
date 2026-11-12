@@ -8,7 +8,7 @@ export default defineConfig({
   // proxy the server through port 8000 so this local demo doesn't need to worry about CORS or CSRF
   server: {
     proxy: {
-      '/api': 'http://localhost:8000'
-    }
-  }
+      '/api': 'http://localhost:8000',
+    },
+  },
 })
