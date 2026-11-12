@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Env / secrets
+.env
+.env.*
+
+# Frontend
+node_modules/
+dist/
+build/
+.next/
+
+# OS / editor
+.DS_Store
+.vscode
