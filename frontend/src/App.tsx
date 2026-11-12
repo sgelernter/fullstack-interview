@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { apiGet } from './api'
+import { apiRequest } from './api'
 
 function App() {
   const [data, setData] = useState<unknown>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    apiGet('').then(setData).catch((e: Error) => setError(e.message))
+    apiRequest('').then(setData).catch((e: Error) => setError(e.message))
   }, [])
 
   return (
